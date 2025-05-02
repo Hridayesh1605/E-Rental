@@ -1,5 +1,5 @@
 import { cleanParams, createNewUserInDatabase } from "@/lib/utils";
-import { Manager, Property, Tenant } from "@/types/prismaTypes";
+import { Lease, Manager, Payment, Property, Tenant } from "@/types/prismaTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 import { FiltersState } from ".";
@@ -17,7 +17,7 @@ export const api = createApi({
         },
   }),
   reducerPath: "api",
-  tagTypes: ["Managers", "Tenants", "Properties", "PropertyDetails"],
+  tagTypes: ["Managers", "Tenants", "Properties", "PropertyDetails", "Leases", "Payments"],
   endpoints: (build) => ({
     getAuthUser: build.query<User, void>({
       queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
@@ -116,6 +116,17 @@ export const api = createApi({
       providesTags: (result) => [{ type: "Tenants", id: result?.id }],
     }),
 
+    getCurrentResidences: build.query<Property[], string>({
+      query: (cognitoId) => `tenants/${cognitoId}/current-residences`,
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Properties" as const, id })),
+              { type: "Properties", id: "LIST" },
+            ]
+          : [{ type: "Properties", id: "LIST" }],
+    }),
+
     updateTenantSettings: build.mutation<Tenant, {cognito:string} & Partial<Tenant>>({
       query: ({ cognitoId, ...updatedTenant }) => ({
         url: `/tenants/${cognitoId}`,
@@ -153,6 +164,17 @@ export const api = createApi({
         { type: "Properties", id: "LIST" },
       ],
     }),
+
+    // lease related enpoints
+    getLeases: build.query<Lease[], number>({
+      query: () => "leases",
+      providesTags: ["Leases"],
+    }),
+
+    getPayments: build.query<Payment[], number>({
+      query: (leaseId) => `leases/${leaseId}/payments`,
+      providesTags: ["Payments"],
+    }),
 }),
 })
 
@@ -165,4 +187,7 @@ export const {
   useRemoveFavoritePropertyMutation,
   useGetTenantQuery,
   useGetPropertyQuery,
+  useGetCurrentResidencesQuery,
+  useGetLeasesQuery,
+  useGetPaymentsQuery,
 } = api;
