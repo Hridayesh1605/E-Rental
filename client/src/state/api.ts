@@ -1,5 +1,5 @@
 import { cleanParams, createNewUserInDatabase } from "@/lib/utils";
-import { Lease, Manager, Payment, Property, Tenant } from "@/types/prismaTypes";
+import { Application, Lease, Manager, Payment, Property, Tenant } from "@/types/prismaTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 import { FiltersState } from ".";
@@ -17,7 +17,7 @@ export const api = createApi({
         },
   }),
   reducerPath: "api",
-  tagTypes: ["Managers", "Tenants", "Properties", "PropertyDetails", "Leases", "Payments"],
+  tagTypes: ["Managers", "Tenants", "Properties", "PropertyDetails", "Leases", "Payments", "Applications"],
   endpoints: (build) => ({
     getAuthUser: build.query<User, void>({
       queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
@@ -204,6 +204,47 @@ export const api = createApi({
       query: (leaseId) => `leases/${leaseId}/payments`,
       providesTags: ["Payments"],
     }),
+
+    // application related endpoints
+    getApplications: build.query<
+      Application[],
+      { userId?: string; userType?: string }
+    >({
+      query: (params) => {
+        const queryParams = new URLSearchParams();
+        if (params.userId) {
+          queryParams.append("userId", params.userId.toString());
+        }
+        if (params.userType) {
+          queryParams.append("userType", params.userType);
+        }
+
+        return `applications?${queryParams.toString()}`;
+      },
+      providesTags: ["Applications"],
+    }),
+
+    updateApplicationStatus: build.mutation<
+      Application & { lease?: Lease },
+      { id: number; status: string }
+    >({
+      query: ({ id, status }) => ({
+        url: `applications/${id}/status`,
+        method: "PUT",
+        body: { status },
+      }),
+      invalidatesTags: ["Applications", "Leases"],
+    }),
+
+    createApplication: build.mutation<Application, Partial<Application>>({
+          query: (body) => ({
+            url: `applications`,
+            method: "POST",
+            body: body,
+          }),
+          invalidatesTags: ["Applications"],
+        }),
+
 }),
 })
 
@@ -222,4 +263,7 @@ export const {
   useGetManagerPropertiesQuery,
   useGetPropertyLeasesQuery,
   useCreatePropertyMutation,
+  useGetApplicationsQuery,
+  useUpdateApplicationStatusMutation,
+  useCreateApplicationMutation,
 } = api;
