@@ -81,7 +81,7 @@ const FiltersFull = () => {
 
         if (!isFiltersFullOpen) return null;
   return (
-    <div className="bg-white rounded-lg px-4 h-full overflow-auto pb-10">
+    <div className="bg-gray-900 rounded-lg px-4 h-full overflow-auto pb-10 text-gray-200">
       <div className="flex flex-col space-y-6">
         {/* Location */}
         <div>
@@ -100,7 +100,7 @@ const FiltersFull = () => {
             />
             <Button
               onClick={handleLocationSearch}
-              className="rounded-r-xl rounded-l-none border-l-none border-black shadow-none border hover:bg-primary-700 hover:text-primary-50"
+              className="rounded-r-xl rounded-l-none border-l-none border-gray-400 shadow-none border hover:bg-primary-700 hover:text-primary-50"
             >
               <Search className="w-4 h-4" />
             </Button>
@@ -117,8 +117,8 @@ const FiltersFull = () => {
                 className={cn(
                   "flex flex-col items-center justify-center p-4 border rounded-xl cursor-pointer",
                   localFilters.propertyType === type
-                    ? "border-black"
-                    : "border-gray-200"
+                    ? "border-gray-200"
+                    : "border-black"
                 )}
                 onClick={() =>
                   setLocalFilters((prev) => ({
@@ -139,11 +139,11 @@ const FiltersFull = () => {
           <h4 className="font-bold mb-2">Price Range (Monthly)</h4>
           <Slider
             min={0}
-            max={10000}
+            max={100000}
             step={100}
             value={[
               localFilters.priceRange[0] ?? 0,
-              localFilters.priceRange[1] ?? 10000,
+              localFilters.priceRange[1] ?? 100000,
             ]}
             onValueChange={(value: any) =>
               setLocalFilters((prev) => ({
@@ -153,8 +153,8 @@ const FiltersFull = () => {
             }
           />
           <div className="flex justify-between mt-2">
-            <span>${localFilters.priceRange[0] ?? 0}</span>
-            <span>${localFilters.priceRange[1] ?? 10000}</span>
+            <span>{localFilters.priceRange[0] ?? 0}{" "}Rs</span>
+            <span>{localFilters.priceRange[1] ?? 100000}{" "}Rs</span>
           </div>
         </div>
 
@@ -236,8 +236,8 @@ const FiltersFull = () => {
                 className={cn(
                   "flex items-center space-x-2 p-2 border rounded-lg hover:cursor-pointer",
                   localFilters.amenities.includes(amenity as AmenityEnum)
-                    ? "border-black"
-                    : "border-gray-200"
+                    ? "border-gray-200"
+                    : "border-black"
                 )}
                 onClick={() => handleAmenityChange(amenity as AmenityEnum)}
               >
@@ -274,14 +274,14 @@ const FiltersFull = () => {
         <div className="flex gap-4 mt-6">
           <Button
             onClick={handleSubmit}
-            className="flex-1 bg-primary-700 text-white rounded-xl"
+            className="flex-1 bg-primary-50 text-gray-900 rounded-xl"
           >
             APPLY
           </Button>
           <Button
             onClick={handleReset}
             variant="outline"
-            className="flex-1 rounded-xl"
+            className="flex-1 rounded-xl  bg-primary-700"
           >
             Reset Filters
           </Button>

@@ -41,7 +41,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="min-h-screen w-full bg-primary-100">
         <Navbar />
         <div style={{ marginTop: `${NAVBAR_HEIGHT}px` }}>
-          <main className="flex">
+          <main className="flex bg-gray-900 ">
             <Sidebar userType={authUser.userRole.toLowerCase()} />
             <div className="flex-grow p-4 min-h-screen overflow-auto relative z-0 ml-0 md:ml-64">
               {children}

@@ -32,10 +32,10 @@ const SettingsForm = ({
   return (
     <div className="pt-8 pb-5 px-8">
       <div className="mb-5">
-        <h1 className="text-xl font-semibold">
+        <h1 className="text-xl font-semibold text-gray-100">
           {`${userType.charAt(0).toUpperCase() + userType.slice(1)} Settings`}
         </h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-400 mt-1">
           Manage your account preferences and personal information
         </p>
       </div>

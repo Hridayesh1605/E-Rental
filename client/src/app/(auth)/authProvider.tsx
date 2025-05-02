@@ -22,10 +22,12 @@ const components = {
       return (
         <View className="mt-4 mb-7">
           <Heading level={3} className="!text-2xl !font-bold">
-            E-
-            <span className="text-secondary-500 font-light hover:!text-primary-300">
-              Rental
-            </span>
+            <div className="text-xl font-bold">
+                Stay-
+                <span className="text-secondary-500 font-light hover:!text-primary-300">
+                  desh
+                </span>
+              </div>
           </Heading>
           <p className="text-muted-foreground mt-2">
             <span className="font-bold">Welcome!</span> Please sign in to continue

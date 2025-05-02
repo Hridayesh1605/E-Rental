@@ -9,7 +9,12 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			poppins: ['Poppins', 'sans-serif'],
+		  },
   		colors: {
+			gradientStart: '#1a202c', // Dark slate gray
+			gradientEnd: '#2d3748',   // Charcoal gray
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -28,23 +33,23 @@ const config: Config = {
   				'400': '#a8a8af',
   				'500': '#82828b',
   				'600': '#57575f',
-  				'700': '#27272a',
+  				'700': '#0f1117',
   				'800': '#111113',
   				'900': '#040405',
   				'950': '#000000'
   			},
   			secondary: {
-  				'50': '#fefcfc',
-  				'100': '#fdf2f2',
-  				'200': '#fae1e1',
-  				'300': '#f6c9c9',
-  				'400': '#f1abab',
-  				'500': '#eb8686',
-  				'600': '#e45a5a',
-  				'700': '#dc2828',
-  				'800': '#7c1414',
-  				'900': '#400a0a',
-  				'950': '#2c0707'
+  				'50':  '#f0fcff',
+'100': '#e0f7ff',
+'200': '#b8ecff',
+'300': '#8ce0ff',
+'400': '#5dd4ff',
+'500': '#39d5ff',  
+'600': '#1eb9e3',
+'700': '#1694b8',
+'800': '#0e6a88',
+'900': '#094358',
+'950': '#052c3a'
   			},
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',

@@ -46,13 +46,13 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
   return (
     <Sidebar
       collapsible="icon"
-      className="fixed left-0 bg-white shadow-lg"
+      className="fixed left-0 bg-slate-800 shadow-lg "
       style={{
         top: `${NAVBAR_HEIGHT}px`,
         height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
       }}
     >
-      <SidebarHeader>
+      <SidebarHeader className='bg-slate-800 '>
         <SidebarMenu>
           <SidebarMenuItem>
             <div
@@ -63,7 +63,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
             >
               {open ? (
                 <>
-                  <h1 className="text-xl font-bold text-gray-800">
+                  <h1 className="text-xl font-bold text-gray-400">
                     {userType === "manager" ? "Manager View" : "Renter View"}
                   </h1>
                   <button
@@ -85,7 +85,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className='bg-slate-800'>
         <SidebarMenu>
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -98,7 +98,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
                     "flex items-center px-7 py-7",
                     isActive
                       ? "bg-gray-100"
-                      : "text-gray-600 hover:bg-gray-100",
+                      : "bg-slate-800 hover:bg-gray-100",
                     open ? "text-blue-600" : "ml-[5px]"
                   )}
                 >

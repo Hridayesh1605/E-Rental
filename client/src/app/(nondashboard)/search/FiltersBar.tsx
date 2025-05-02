@@ -87,7 +87,7 @@ const FiltersBar = () => {
       }
     };
   return (
-    <div className="flex justify-between items-center w-full py-5">
+    <div className="flex justify-between items-center w-full py-5 bg-gray-900 text-gray-400">
       {/* Filters */}
       <div className="flex justify-between items-center gap-4 p-2">
 
@@ -138,7 +138,7 @@ const FiltersBar = () => {
               <SelectItem value="any">Any Min Price</SelectItem>
               {[500, 1000, 1500, 2000, 3000, 5000, 10000].map((price) => (
                 <SelectItem key={price} value={price.toString()}>
-                  ${price / 1000}k+
+                  {price / 1000}k Rs+
                 </SelectItem>
               ))}
             </SelectContent>
@@ -160,7 +160,7 @@ const FiltersBar = () => {
               <SelectItem value="any">Any Max Price</SelectItem>
               {[1000, 2000, 3000, 5000, 10000].map((price) => (
                 <SelectItem key={price} value={price.toString()}>
-                  &lt;${price / 1000}k
+                  &lt;{price / 1000}k Rs
                 </SelectItem>
               ))}
             </SelectContent>

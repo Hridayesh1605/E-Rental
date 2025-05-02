@@ -39,7 +39,7 @@ const SearchPage = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div
-      className="w-full mx-auto px-5 flex flex-col"
+      className="w-full mx-auto px-5 flex flex-col bg-gray-900"
       style={{
         height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
       }}

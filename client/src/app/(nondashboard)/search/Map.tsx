@@ -25,7 +25,7 @@ const Map = () => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current!,
       style: "mapbox://styles/hridayesh16052000/cma531i8m003m01s50gpnd9f6",
-      center: filters.coordinates || [-74.5, 40],
+      center: filters.coordinates || [75.787270, 26.912434],
       zoom: 9,
     });
     properties.forEach((property) => {

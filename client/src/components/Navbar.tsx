@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 import { useGetAuthUserQuery } from "@/state/api";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "aws-amplify/auth";
-import { Bell, MessageCircle, Plus, Search } from "lucide-react";
+import { Bell, MessageCircle, Plus, Search,Heart,Hotel } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { SidebarTrigger } from "./ui/sidebar";
@@ -48,13 +48,13 @@ const Navbar = () => {
                 src="/logo.svg"
                 alt="Rentiful Logo"
                 width={24}
-                height={24}
-                className="w-6 h-6"
+                height={26}
+                className="w-10 h-10"
               />
               <div className="text-xl font-bold">
-                E-
+                Stay-
                 <span className="text-secondary-500 font-light hover:!text-primary-300">
-                  RENT
+                  desh
                 </span>
               </div>
             </div>
@@ -88,8 +88,8 @@ const Navbar = () => {
                     )}
         </div>
         {!isDashboardPage && ( 
-          <p className="text-primary-200 hidden md:block">
-            Discover your perfect rental apartment with our advanced search
+          <p className="text-primary-200 hidden md:block tracking-wide font-poppins">
+            Find your perfect apartment—fast, smart, easy.
           </p>
           )}
           <div className="flex items-center gap-5">
@@ -98,6 +98,14 @@ const Navbar = () => {
               <>
               <div className="relative hidden md:block">
                 <MessageCircle className="w-6 h-6 cursor-pointer text-primary-200 hover:text-primary-400" />
+                <span className="absolute top-0 right-0 w-2 h-2 bg-secondary-700 rounded-full"></span>
+              </div>
+              <div className="relative hidden md:block">
+                <Heart className="w-6 h-6 cursor-pointer text-primary-200 hover:text-primary-400" />
+                <span className="absolute top-0 right-0 w-2 h-2 bg-secondary-700 rounded-full"></span>
+              </div>
+              <div className="relative hidden md:block">
+                <Hotel className="w-6 h-6 cursor-pointer text-primary-200 hover:text-primary-400" />
                 <span className="absolute top-0 right-0 w-2 h-2 bg-secondary-700 rounded-full"></span>
               </div>
               <div className="relative hidden md:block">

@@ -7,7 +7,7 @@ import FooterSection from './FooterSection'
 
 const Landing = () => {
   return (
-    <div>
+    <div className='bg-[#0d1117]'>
       <HeroSection/>
       <FeactureSection/>
       <DiscoverSection/>
