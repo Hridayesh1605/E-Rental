@@ -169,19 +169,22 @@ const createProperty = (req, res) => __awaiter(void 0, void 0, void 0, function*
         //     return uploadResult.Location;
         //   })
         // );
+        const query = `${address}, ${city}, ${state}, ${country}`;
         const geocodingUrl = `https://nominatim.openstreetmap.org/search?${new URLSearchParams({
-            street: address,
-            city,
-            country,
-            postalcode: postalCode,
+            q: query,
             format: "json",
             limit: "1",
         }).toString()}`;
         const geocodingResponse = yield axios_1.default.get(geocodingUrl, {
             headers: {
-                "User-Agent": "RealEstateApp (justsomedummyemail@gmail.com",
+                "User-Agent": "RealEstateApp (sanjaygopalmore@gmail.com)",
             },
         });
+        console.log("Geocoding URL:", geocodingUrl);
+        console.log("Geocoding Response:", geocodingResponse.data);
+        if (!geocodingResponse.data.length) {
+            res.status(400).json({ error: "Address could not be geocoded." });
+        }
         const [longitude, latitude] = ((_a = geocodingResponse.data[0]) === null || _a === void 0 ? void 0 : _a.lon) && ((_b = geocodingResponse.data[0]) === null || _b === void 0 ? void 0 : _b.lat)
             ? [
                 parseFloat((_c = geocodingResponse.data[0]) === null || _c === void 0 ? void 0 : _c.lon),

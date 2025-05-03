@@ -224,21 +224,28 @@ export const createProperty = async (
     //   })
     // );
 
+    const query = `${address}, ${city}, ${state}, ${country}`;
+
     const geocodingUrl = `https://nominatim.openstreetmap.org/search?${new URLSearchParams(
       {
-        street: address,
-        city,
-        country,
-        postalcode: postalCode,
+        q: query,
         format: "json",
         limit: "1",
       }
     ).toString()}`;
     const geocodingResponse = await axios.get(geocodingUrl, {
       headers: {
-        "User-Agent": "RealEstateApp (justsomedummyemail@gmail.com",
+        "User-Agent": "RealEstateApp (sanjaygopalmore@gmail.com)",
       },
     });
+
+    console.log("Geocoding URL:", geocodingUrl);
+
+    console.log("Geocoding Response:", geocodingResponse.data);
+
+    if (!geocodingResponse.data.length) {
+      res.status(400).json({ error: "Address could not be geocoded." });
+    }
     const [longitude, latitude] =
       geocodingResponse.data[0]?.lon && geocodingResponse.data[0]?.lat
         ? [
