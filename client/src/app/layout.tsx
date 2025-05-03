@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Stay-desh",
+  icons: {
+    icon: "/logo.svg", // or "/logo.png"
+  },
   description: "Browse apartments and homes for rent with Rentiful.",
 };
 
