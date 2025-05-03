@@ -7,13 +7,20 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
 import { useRouter } from 'next/navigation';
+import { useGetAuthUserQuery } from "@/state/api";
 
 const HeroSection = () => {
 
   const router = useRouter();
+  const { data: authUser, isLoading } = useGetAuthUserQuery();
 
   const handleClick = () => {
-    router.push('/search');
+    if(authUser) {
+      router.push('/search');
+    }else{
+      router.push('/signin');
+    }
+    
   };
 
   return (
