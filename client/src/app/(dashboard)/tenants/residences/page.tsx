@@ -30,7 +30,7 @@ const Residences = () => {
   console.log(error);
 
   if (isLoading) return <Loading />;
-  if (error) return <div>Error loading current residences</div>;
+  if (error) return <div className="text-gray-400">Error loading current residences</div>;
 
   return (
     <div className="dashboard-container">
@@ -51,7 +51,7 @@ const Residences = () => {
         ))}
       </div>
       {(!currentResidences || currentResidences.length === 0) && (
-        <p>You don&lsquo;t have any current residences</p>
+        <p className="text-gray-400">You don&lsquo;t have any current residences</p>
       )}
     </div>
   );
